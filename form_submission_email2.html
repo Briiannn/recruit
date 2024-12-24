@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truck Driver Recruitment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa;
+            color: #333;
+        }
+        header {
+            background-color: #00796b;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, button {
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e65100;
+        }
+        .faq {
+            margin-top: 3rem;
+            background-color: #e0f2f1;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .faq h3 {
+            text-align: center;
+            color: #00796b;
+        }
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+        .faq-item h4 {
+            margin: 0;
+            color: #004d40;
+        }
+        .faq-item p {
+            margin: 0.5rem 0 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to [Trucking Company Name]</h1>
+        <p>Your journey to a rewarding trucking career starts here!</p>
+    </header>
+    <main>
+        <form id="application-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your email address" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your phone number" required>
+
+            <button type="submit">Submit Application</button>
+        </form>
+
+        <section class="faq">
+            <h3>Frequently Asked Questions</h3>
+            <div class="faq-item">
+                <h4>What qualifications do I need to apply?</h4>
+                <p>Applicants must have a valid commercial driver’s license (CDL) and a clean driving record.</p>
+            </div>
+            <div class="faq-item">
+                <h4>What benefits do you offer?</h4>
+                <p>We provide health insurance, retirement plans, paid time off, and performance bonuses.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How long does the application process take?</h4>
+                <p>The process typically takes 1-2 weeks, including an interview and driving test.</p>
+            </div>
+        </section>
+    </main>
+    <script>
+        const form = document.getElementById('application-form');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const date = new Date().toISOString().split('T')[0];
+
+            // Store data in localStorage
+            const applications = JSON.parse(localStorage.getItem('applications')) || [];
+            applications.push({ name, email, phone, date });
+            localStorage.setItem('applications', JSON.stringify(applications));
+
+            form.reset();
+
+            // Ensure redirection works correctly
+            setTimeout(() => {
+                window.location.href = 'thank_you.html';
+            }, 100); // Add a short delay before redirecting
+        });
+    </script>
+</body>
+</html>
